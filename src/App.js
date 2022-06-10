@@ -12,6 +12,8 @@ function App() {
 
 deneme1
 
+<h2>hello deneme</h2>
+
 </div>
 
 
