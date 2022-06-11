@@ -29,12 +29,47 @@ const hamndlechecked = () => {
 }
 
 
+const [show, setShow] = useState(false);
+
+
+const showlogin = () => {
+
+
+setShow(true)
+
+
+}
+
+
 
 
 
   return (
     <div className="App">
       
+
+
+<div  className={`  fixed top-0 left-0 right-0  ${show ? '   translate-y-0' : 'translate-y-[-100vh] '}   transition-all duration-500  h-[30vh]   bg-green-700  `}>
+
+<h1
+
+onClick={() => setShow(!show)}
+>close me</h1>
+
+overlay here
+
+
+</div>
+
+
+<div
+onClick={showlogin}
+className=''
+>
+  show form
+</div>
+
+
      hello maher
 
 <h1
