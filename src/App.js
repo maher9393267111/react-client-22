@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Home from './pages/home'
 import {useState, useEffect} from 'react';
-import {ContactUs} from './pages/email'
+
 function App() {
 
 const [data, setData] = useState([]);
@@ -28,7 +28,7 @@ onClick={handleClick}
     {/* <Home/> */}
 
 
-<ContactUs/>
+
     </div>
   );
 }
