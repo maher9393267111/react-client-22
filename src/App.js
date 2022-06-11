@@ -1,13 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
-
+import axios from 'axios';
+import Home from './pages/home'
+import {useState, useEffect} from 'react';
 function App() {
+
+const [data, setData] = useState([]);
+const handleClick = () => {
+  axios.get('http://localhost:5000/user/reg').then(res => {
+    setData(res.data);
+    console.log(res.data);
+  })
+}
+
+
   return (
     <div className="App">
       
       mian branch here
 
-      <h1>main branch is here</h1>
+<button
+onClick={handleClick}
+>fetch data</button>
+    
+
+    <Home/>
 
     </div>
   );
