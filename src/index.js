@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import store from "./redux/store";
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import reportWebVitals from './reportWebVitals';
 import AuthContext from './context/AuthContext';
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
       <Provider store={store}>
         <AuthContext>
+        <BrowserRouter>
     <App />
+        </BrowserRouter>
     </AuthContext>
     </Provider>
   </React.StrictMode>

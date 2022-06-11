@@ -1,50 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
-import Home from './pages/home'
-import {useState, useEffect,useRef} from 'react';
-
-
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
+import Home from "./pages/home";
+import { useState, useEffect, useRef } from "react";
+import { ThemeProvider } from './context/ThemeContext';
+import Navbar from "./components/Navbar";
+import { Route, Routes } from 'react-router-dom';
 function App() {
+  const checkref = useRef(null);
 
+  const [coins, setCoins] = useState([]);
 
-  const checkref= useRef(null);
-  
-
-
-// make checked input clicked when clkick to button
-
-
-
-const [show, setShow] = useState(false);
-
-
-
-
-
-
-
+  const [show, setShow] = useState(false);
 
   return (
-    <div className="App">
-      
-<div
+    <ThemeProvider>
+  <div className="App">
 
-className='bg-[background: linear-gradient(315deg, #a85dd4 0%, #25342b 100%)]  w-[200px] h-[200px]'
->
-<img
-className='w-full h-full'
-src="https://websitedemos.net/courier-04/wp-content/uploads/sites/540/2020/01/bg-overlay-01-free-img.png" alt="" />
+  <Navbar />
+  {/* <Routes>
+          <Route path='/' element={<Home coins={coins} />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/coin/:coinId' element={<CoinPage />}>
+            <Route path=':coinId' />
+          </Route>
+        </Routes> */}
 
-</div>
+{/* <Footer /> */}
 
 
+  </div>
+  </ThemeProvider>
 
-
-
-
-    </div>
-  );
+  )
 }
 
 export default App;
