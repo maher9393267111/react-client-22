@@ -11,6 +11,8 @@ import {
     updateProfile,
 
   } from 'firebase/auth';
+
+  import { doc, setDoc } from 'firebase/firestore';
   import { useState } from 'react';
   import { useEffect } from 'react';
   import { useContext } from 'react';
