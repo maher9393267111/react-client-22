@@ -6,6 +6,10 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
+    sendEmailVerification,
+    sendSignInLinkToEmail,
+    updateProfile,
+
   } from 'firebase/auth';
   import { useState } from 'react';
   import { useEffect } from 'react';
@@ -31,11 +35,19 @@ import {
     });
     const [loading, setLoading] = useState(false);
   
-    const signUp = (email, password) => {
-      return createUserWithEmailAndPassword(auth, email, password);
+    const signUp = (email, password,name,imageUrl) => {
+     return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      updateProfile(userCredential.user, {
+        displayName: name,
+        photoURL: imageUrl ? imageUrl : '',
+      });
+    })
+    .catch((error) => console.log(error.message));
+
+    
     };
-    const login = (email, password) => {
-      return signInWithEmailAndPassword(auth, email, password);
+    const login = (email, password,name) => {
+      return signInWithEmailAndPassword(auth, email, password) 
     };
     const loginWithGoogle = () => {
       const provider = new GoogleAuthProvider();
@@ -49,6 +61,27 @@ import {
       return sendPasswordResetEmail(auth, email);
     };
   
+
+    // send reset password email
+    const sendResetPasswordEmailfunc = (email) => {
+      return sendPasswordResetEmail(auth, email,{url:'http://localhost:3000'});
+    
+    }
+  
+    // send link to email
+    const sendemailLink = (email) => {
+      console.log('send email link', email)
+        return sendSignInLinkToEmail(auth, email, {
+            url: 'http://localhost:3000/register/complete',
+            handleCodeInApp: true,
+        }).then((result) => {
+            console.log('send email link result', result)
+        }
+        ).catch((error) => {
+            console.log('send email link error', error)
+        }
+        );
+    }
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         setCurrentUser(user);
@@ -70,6 +103,8 @@ import {
       loading,
       setLoading,
       resetPassword,
+      sendemailLink,
+      sendResetPasswordEmailfunc
     };
     return <authContext.Provider {...{ value }}>{children}</authContext.Provider>;
   };
