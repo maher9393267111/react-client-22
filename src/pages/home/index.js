@@ -10,6 +10,10 @@ function SignIn() {
     function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider)
+
+        // find current user data in firebase
+        const useer = auth.currentUser
+        console.log(useer.displayName)
     }
     return (
         <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
