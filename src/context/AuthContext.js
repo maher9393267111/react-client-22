@@ -33,6 +33,8 @@ import {
 
     const signUp = (email, password) => {
       createUserWithEmailAndPassword(auth, email, password);
+      // set rules read and write if true
+      // create  collection name is users --> doc name(id) is user gmail  ----> data is empty array wishlist
       return setDoc(doc(db, 'users', email), {
         watchList: [],
       });
